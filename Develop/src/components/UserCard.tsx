@@ -51,13 +51,14 @@ const UserCard = ({
                 onClick={() => addToCandidateList(false)}
               />
             </aside>
-          )}
         </section>
       ) : (
-        <h1 style={{ margin: '16px 0' }}>Please search for a film.</h1>
+        <section className='UserCard'>
+          <h2>Loading...</h2>
+        </section>
       )}
     </>
   );
 };
 
-export default CandidateCard;
+export default UserCard;

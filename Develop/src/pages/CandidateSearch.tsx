@@ -26,9 +26,8 @@ const CandidateSearch = () => {
       parsedUsersToCandidate = JSON.parse(storedUsersToCandidate);
     }
     parsedUsersToCandidate.push(currentUser);
-    localStorage.setItem('CandidatesList', JSON.stringify(parsedUsersToCandidate));
-  }
-
+    localStorage.setItem('CandidatesList', JSON.stringify(parsedUsersToCandidate));}
+    
     if (currentIndex < result.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setCurrentUser(result[currentIndex + 1]);
@@ -42,12 +41,14 @@ const CandidateSearch = () => {
   const searchForUsers = async () => {
     const data: Candidate[] = await searchGithub();
 
+    console.log('Data:', data);
     setResult(data);
     await searchspecificUser(data[0].login || '');
   };
 
   const searchspecificUser = async (username: string) => {
     const data: Candidate = await searchGithubUser(username);
+    console.log('Data:', data);
     setCurrentUser(data);
   };
 
@@ -62,12 +63,11 @@ const CandidateSearch = () => {
         <h1>Candidate Search</h1>
 
         <div className='resultsContainer'>
-          {/* {result.map((currentUser: Candidate) => ( */}
             <UserCard
               currentUser={currentUser}
+              
               addToCandidateList={addToCandidateList}
             />
-          {/* ))} */}
         </div>
       </section>
     </>
